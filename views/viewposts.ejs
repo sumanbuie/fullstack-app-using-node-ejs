@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pickBazar</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/public/css/style.css" />
+    <style>
+      img {
+        width: 500px;
+      }
+      #postID {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">Pickbazar</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <% if (isAuth) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/profile">profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/posts">create new</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">logout</a>
+          </li>
+          <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/registration">sign up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/signin">log in</a>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container" id="postID">
+      <div class="card md-col-3" style="width: 18rem">
+        <img
+          class="card-img-top"
+          src="data:image/<%=item.img.contentType%>;base64,
+            <%=item.img.data.toString('base64')%>"
+          alt="image cap"
+        />
+        <div class="card-body">
+          <h5 class="card-title">
+            <p><%= item.name %></p>
+          </h5>
+          <p class="card-text">
+          <p><%= item.desc %></p>
+          </p>
+          <% if (isAuth) { %>
+          <a href="/posts/delete/<%= item._id%>" class="btn btn-danger"
+            >delete</a
+          >
+          <a href="/posts/edit/<%= item._id%>" class="btn btn-primary">Edit</a>
+          <% } %>
+          <a href="/" class="btn btn-secondary">go back</a>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="mt-5 mb-3 text-muted">suman &copy; 2021-22</p>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
